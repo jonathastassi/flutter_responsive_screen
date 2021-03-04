@@ -54,8 +54,7 @@ class MenuWidget extends StatelessWidget {
                   onTap: () {
                     context
                         .read<NavigationService>()
-                        .pushReplacement('/product')
-                        .then((value) => Navigator.of(context).pop());
+                        .pushReplacement('/product');
                     ;
                   },
                   child: ListTile(

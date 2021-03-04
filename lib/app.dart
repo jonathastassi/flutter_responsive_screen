@@ -61,7 +61,7 @@ class AppLayout extends StatelessWidget {
           Expanded(
             child: Container(
               child: Navigator(
-                key: context.read<NavigationService>().navigatorKey,
+                key: context.watch<NavigationService>().navigatorKey,
                 onGenerateRoute: RouterCustom.onGenerateRoute,
                 reportsRouteUpdateToEngine: true,
                 onPopPage: (route, result) {

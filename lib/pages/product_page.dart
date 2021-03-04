@@ -1,17 +1,17 @@
 import 'package:dashboard_flutter/widgets/responsive_widget.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  static const String route = '/';
+class ProductPage extends StatelessWidget {
+  static const String route = '/product';
 
   @override
   Widget build(BuildContext context) {
-    print("Buildou HomePage");
+    print("Buildou ProductPage");
 
     return Column(
       children: [
         Text(
-          "Home",
+          "Products",
           style: TextStyle(fontSize: 50),
         ),
         ResponsiveWidget(

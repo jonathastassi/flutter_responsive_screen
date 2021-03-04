@@ -14,8 +14,6 @@ class ResponsiveWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
     if (ResponsiveWidget.isDesktop(context) && showDesktop) {
       return child;
     }

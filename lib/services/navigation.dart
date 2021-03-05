@@ -11,6 +11,11 @@ class NavigationService with ChangeNotifier, DiagnosticableTreeMixin {
     return state?.pushReplacementNamed(routeName) ?? Future.value(null);
   }
 
+  void pop() {
+    var state = navigatorKey.currentState;
+    return state?.pop();
+  }
+
   /// Makes `Counter` readable inside the devtools by listing all of its properties
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {

@@ -1,25 +1,33 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-/// Mix-in [DiagnosticableTreeMixin] to have access to [debugFillProperties] for the devtool
-// ignore: prefer_mixin
-class NavigationService with ChangeNotifier, DiagnosticableTreeMixin {
+class NavigationService with ChangeNotifier {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  String _titlePage = "Home";
+  String get titlePage => _titlePage;
+  String _routeActual = "/";
+  String get routeActual => _routeActual;
 
-  Future<dynamic> pushReplacement(String routeName) {
+  Future<dynamic> pushReplacement(String routeName,
+      {String titlePage = "",
+      BuildContext? context,
+      bool closeDrawer = false}) {
     var state = navigatorKey.currentState;
+    _titlePage = titlePage;
+    _routeActual = routeName;
+    notifyListeners();
+
+    if (scaffoldKey.currentState?.isDrawerOpen == true &&
+        closeDrawer == true &&
+        context != null) {
+      Navigator.of(context).pop();
+    }
     return state?.pushReplacementNamed(routeName) ?? Future.value(null);
   }
 
   void pop() {
     var state = navigatorKey.currentState;
     return state?.pop();
-  }
-
-  /// Makes `Counter` readable inside the devtools by listing all of its properties
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(StringProperty('navigatorKey', navigatorKey.toString()));
   }
 }

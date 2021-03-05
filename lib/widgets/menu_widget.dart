@@ -39,34 +39,48 @@ class MenuWidget extends StatelessWidget {
               controller: _scrollController,
               physics: BouncingScrollPhysics(),
               children: [
-                InkWell(
-                  splashColor: Colors.black87,
-                  onTap: () {
-                    context.read<NavigationService>().pushReplacement('/');
-                  },
-                  child: ListTile(
-                    leading: Icon(Icons.stacked_bar_chart),
-                    title: Text("Home"),
-                  ),
+                MenuItem(
+                  routeName: '/',
+                  pageName: 'Home',
                 ),
-                InkWell(
-                  splashColor: Colors.black87,
-                  onTap: () {
-                    context
-                        .read<NavigationService>()
-                        .pushReplacement('/product');
-                    ;
-                  },
-                  child: ListTile(
-                    leading: Icon(Icons.stacked_bar_chart),
-                    title: Text("Product"),
-                  ),
+                MenuItem(
+                  routeName: '/product',
+                  pageName: 'Products',
                 ),
               ],
             ),
           ),
         ),
       ],
+    );
+  }
+}
+
+class MenuItem extends StatelessWidget {
+  final String routeName;
+  final String pageName;
+
+  MenuItem({required this.routeName, required this.pageName});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      splashColor: Colors.black87,
+      onTap: () {
+        context.read<NavigationService>().pushReplacement(routeName,
+            titlePage: pageName, context: context, closeDrawer: true);
+      },
+      child: ListTile(
+        leading: Icon(Icons.stacked_bar_chart),
+        title: Text(
+          pageName,
+          style: TextStyle(
+              fontWeight:
+                  context.read<NavigationService>().routeActual == routeName
+                      ? FontWeight.bold
+                      : FontWeight.normal),
+        ),
+      ),
     );
   }
 }

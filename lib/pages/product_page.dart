@@ -8,86 +8,78 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     print("Buildou ProductPage");
 
-    return Column(
-      children: [
-        Text(
-          "Products",
-          style: TextStyle(fontSize: 50),
-        ),
-        ResponsiveWidget(
-          showDesktop: true,
-          child: Container(
-            child: Text("Somente Desktop"),
-          ),
-        ),
-        ResponsiveWidget(
-          showTablet: true,
-          child: Container(
-            child: Text("Somente Tablet"),
-          ),
-        ),
-        ResponsiveWidget(
-          showMobile: true,
-          child: Container(
-            child: Text("Somente Mobile"),
-          ),
-        ),
-        ResponsiveWidget(
-          showMobile: true,
-          showTablet: true,
-          child: Container(
-            child: Text("Somente Mobile e tablet"),
-          ),
-        ),
-        ResponsiveWidget(
-          showDesktop: true,
-          showMobile: true,
-          child: Container(
-            child: Text("Somente Mobile e desktop"),
-          ),
-        ),
-        ResponsiveWidget(
-          showTablet: true,
-          showDesktop: true,
-          child: Container(
-            child: Text("Somente tablet e desktop"),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: Card(
-            child: AnimatedContainer(
-              duration: Duration(seconds: 1),
-              height: ResponsiveWidget.isDesktop(context)
-                  ? 600
-                  : (ResponsiveWidget.isTablet(context) ? 450 : 200),
-              color: ResponsiveWidget.isDesktop(context)
-                  ? Colors.blue
-                  : (ResponsiveWidget.isTablet(context)
-                      ? Colors.green
-                      : Colors.red),
-              width: double.maxFinite,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ResponsiveWidget(
-                    showDesktop: true,
-                    child: Text("Desktop - Blue and big"),
-                  ),
-                  ResponsiveWidget(
-                    showTablet: true,
-                    child: Text("Tablet - Green and middle"),
-                  ),
-                  ResponsiveWidget(
-                    showMobile: true,
-                    child: Text("Mobile - Red and small"),
-                  )
-                ],
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Text(
+                  "Products",
+                  style: TextStyle(fontSize: 50),
+                ),
               ),
+              Container(
+                height: 50,
+                width: 150,
+                child: ElevatedButton(
+                  onPressed: () {},
+                  child: Text("Adicionar"),
+                ),
+              ),
+            ],
+          ),
+          Card(
+            child: DataTable(
+              columns: const <DataColumn>[
+                DataColumn(
+                  label: Text(
+                    'Name',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Age',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
+                DataColumn(
+                  label: Text(
+                    'Role',
+                    style: TextStyle(fontStyle: FontStyle.italic),
+                  ),
+                ),
+              ],
+              rows: const <DataRow>[
+                DataRow(
+                  cells: <DataCell>[
+                    DataCell(Text('Sarah')),
+                    DataCell(Text('19')),
+                    DataCell(Text('Student')),
+                  ],
+                ),
+                DataRow(
+                  cells: <DataCell>[
+                    DataCell(Text('Janine')),
+                    DataCell(Text('43')),
+                    DataCell(Text('Professor')),
+                  ],
+                ),
+                DataRow(
+                  cells: <DataCell>[
+                    DataCell(Text('William')),
+                    DataCell(Text('27')),
+                    DataCell(Text('Associate Professor')),
+                  ],
+                ),
+              ],
             ),
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:dashboard_flutter/widgets/responsive_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProductPage extends StatelessWidget {
-  static const String route = '/product';
+  static const String route = '/products';
 
   @override
   Widget build(BuildContext context) {

@@ -44,8 +44,12 @@ class MenuWidget extends StatelessWidget {
                   pageName: 'Home',
                 ),
                 MenuItem(
-                  routeName: '/product',
-                  pageName: 'Products',
+                  routeName: '/local-storage',
+                  pageName: 'Local Storage',
+                ),
+                MenuItem(
+                  routeName: '/products',
+                  pageName: 'Products - CRUD',
                 ),
               ],
             ),

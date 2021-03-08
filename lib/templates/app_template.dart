@@ -30,12 +30,12 @@ class AppTemplate extends StatelessWidget {
           ),
           Expanded(
             child: Container(
-              child: Navigator(
-                key: context.watch<NavigationService>().navigatorKey,
-                onGenerateRoute: RouterCustom.onGenerateRoute,
-                reportsRouteUpdateToEngine: true,
+                child: Navigator(
+                  key: context.watch<NavigationService>().navigatorKey,
+                  onGenerateRoute: RouterCustom.onGenerateRoute,
+                  reportsRouteUpdateToEngine: true,
+                ),
               ),
-            ),
           ),
         ],
       ),
